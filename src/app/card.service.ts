@@ -7,6 +7,7 @@ import {
 import {
   Card
 } from './shared/card';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CardService {
@@ -23,7 +24,7 @@ export class CardService {
     return this.http.get(this.standardURL + 'new/');
   }
 
-  shuffleDeck(deckID: string) {
+  shuffleDeck(deckID: string): any {
     return this.http.get(this.standardURL + deckID + "/shuffle/");
   }
 

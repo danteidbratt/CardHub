@@ -28,9 +28,8 @@
     <form class="form-group row">
       <small class="col-4">Cards Remaining: {{cardsRemaining}}</small>
       <input class="btn-dark btn-large col-4" type="button" value="Shuffle Deck" (click)="shuffleDeck()">
-      <label for="amount-field" class="col-12">Number of cards</label>
-      <input type="text" [(ngModel)]="requestedAmountOfCards" name="textLine" id="amout-field">
-      <input type="button" class="btn-dark" value="Draw cards" (click)="drawCards()">
+      <input type="text" placeholder="Number of Cards..." [(ngModel)]="requestedAmountOfCards" name="textLine" id="amout-field">
+      <input type="button" class="btn-dark" value="Draw {{requestedAmountOfCards != '' ? requestedAmountOfCards + ' ' : ''}}cards" (click)="drawCards()">
     </form>
 
     <ul class="list-inline">
