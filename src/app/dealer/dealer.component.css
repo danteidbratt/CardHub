@@ -1,3 +1,28 @@
+.btn, .form-control {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .playing-card {
-    width: 200px;
+    width: 8em;
+    transform: scale(1);
+    transition-duration: 200ms;
+}
+
+.playing-card:hover {
+    width: 8em;
+    transform: scale(1.05);
+    transition-duration: 200ms;
+}
+
+.card {
+    background-color: rgb(30, 30, 30);
+    border: 2px solid green;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#card-hand {
+    width: 90%;
 }

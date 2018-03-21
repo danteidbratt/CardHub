@@ -16,7 +16,7 @@ export class CardService {
 
   constructor(private http: HttpClient) {}
 
-  drawFromDeck(deckID: string, numberOfCards: number): any {
+  drawFromDeck(deckID: string, numberOfCards: string): any {
     return this.http.get(this.standardURL + deckID + '/draw/?count=' + numberOfCards);
   }
 
@@ -33,7 +33,7 @@ export class CardService {
   }
 
   listPiles(deckID: string, pileName: string): any {
-    return this.http.get(this.standardURL + deckID + '/pile/' + pileName + '/list');
+    return this.http.get(this.standardURL + deckID + '/pile/' + pileName + '/list/?callback=foo');
   }
 
   drawFromPile(deckID: string, pileName: string, cardCodes: string): any {

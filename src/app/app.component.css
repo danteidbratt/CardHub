@@ -1,9 +1,47 @@
+#main-header {
+    background-image: url('https://images7.alphacoders.com/509/thumb-1920-509783.jpg');
+    background-size: cover;
+}
+
+#main-header > div {
+    background-color: rgb(30, 30, 30);
+    border-radius: 40px;
+    border: 3px ridge green;
+    min-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #main-section {
-    height: 500px;
+    background-image: url('https://pre00.deviantart.net/154e/th/pre/f/2014/137/1/c/casino_card_background_wallpaper_hd_1920x1080_by_giozaga-d7intx0.jpg');
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    min-height: 700px;
+    width: 100%;
+    height: 100%;
 }
 
 #main-footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
+    background-color: rgb(10, 10, 10);
+    border-top: 2px solid green;
+}
+
+nav {
+    background-color: rgb(10, 10, 10);
+    border-top: 2px solid green;
+    border-bottom: 2px solid green;
+}
+
+nav li:hover {
+    border-color: green;
+    transition-duration: 300ms;
+}
+
+nav li {
+    border: 1px solid rgb(10, 10, 10);
+    border-radius: 20px;
+    transition-duration: 300ms;
 }

@@ -1,43 +1,66 @@
-<div class="row justify-content-center mb-5">
-  <div class="card col-8 p-3 bg-secondary mb-5" *ngIf="showUsernameInput">
-    <form class="form-group pt-1 row justify-content-center text-center">
-      <h4 class="col-12">Username:</h4>
-      <input class="col-9 mt-2 form-control" type="text" [(ngModel)]="userName" name="username-input-field" id="username-input-field">
-      <input class="col-4 mt-4 btn-dark btn-lg" type="button" value="Enter" (click)="setUserName()">
-    </form>
-  </div>
+<div *ngIf="showUsernameInput" class="card col-12 col-sm-6 p-3 mb-5">
+  <form class="form-group pt-1 row justify-content-center text-center">
+    <h4 class="col-12 text-light">Username</h4>
+    <input class="col-10 mt-2 form-control text-center font-weight-bold" type="text" [(ngModel)]="userName" (keydown.enter)="setUserName()"
+      name="username-input-field" id="username-input-field">
+    <input class="col-10 col-sm-4 mt-4 btn btn-dark btn-lg" type="button" value="Enter" (click)="setUserName()">
+  </form>
+</div>
 
-  <div *ngIf="showNewOrJoin" class="card p-3 col-8 bg-secondary">
-    <form class="form-group row justify-content-around mt-3">
-      <input type="button" class="btn-dark btn-lg col-5" value="New Deck" (click)="selectNew()">
-      <input type="button" class="btn-dark btn-lg col-5" value="Join Deck" (click)="selectJoin()">
-    </form>
-  </div>
+<div *ngIf="showNewOrJoin" class="card col-12 col-sm-8 p-3 mb-5">
+  <form class="form-group row justify-content-around mt-3">
+    <input type="button" class="btn btn-dark btn-lg col-10 col-sm-5" value="New Deck" (click)="selectNew()">
+    <input type="button" class="btn btn-dark btn-lg col-10 col-sm-5 mt-3 mt-sm-0" value="Join Deck" (click)="selectJoin()">
+  </form>
+</div>
 
-  <div class="card m-3 col-8" *ngIf="showJoin">
-    <form class="form-group">
-      <input class="form-control" type="text" placeholder="deck-id" [(ngModel)]="deckID" name="deckIdField">
-      <input class="btn-dark btn-large" type="button" value="Go" (click)="joinDeck()">
-    </form>
-  </div>
+<div *ngIf="showJoin" class="card col-12 col-sm-8 p-3 mb-5">
+  <form class="form-group row mt-3 justify-content-center">
+    <input class="btn btn-dark btn-lg col-10 col-sm-11" type="button" value="Back" (click)="goBack()">
+    <input class="form-control col-10 col-sm-7 mt-2 text-center" type="text" placeholder="deck-id" [(ngModel)]="deckID"
+      name="deckIdField">
+    <input class="btn btn-dark btn-lg col-10 col-sm-3 mt-2" type="button" value="Join" (click)="joinDeck()">
+  </form>
+</div>
 
-  <div class="card m-3 col-10 bg-secondary" *ngIf="showCards">
-    <ul *ngFor="let playerName of allUsernames ; index as playerNumber;">
-      <li>{{playerNumber + 1}}: {{playerName}}</li>
+<div *ngIf="showCards" class="card pt-3 col-10 col-sm-8 mb-5">
+
+  <form class="form-group row justify-content-center">
+    <input class="btn btn-dark btn-lg col-10 col-sm-11 mt-2" type="button" value="Back" (click)=goBack()>
+    <input class="btn btn-dark btn-lg col-10 col-sm-5 mt-2" type="button" value="Update" (click)=update()>
+    <input class="btn btn-dark btn-lg col-10 col-sm-5 mt-2" type="button" value="Shuffle Deck" (click)="shuffleDeck()">
+  </form>
+
+  <section class="text-center text-light">
+    <h5 class="text-center text-light col-12">Players:</h5>
+    <ul class="list-inline row justify-content-center">
+      <li *ngFor="let playerName of allUsernames" class="list-inline-item col-10 col-sm-3 text-center text-light">
+        <span>- {{playerName}}</span>
+      </li>
     </ul>
-    <form class="form-group row">
-      <small class="col-4">Cards Remaining: {{cardsRemaining}}</small>
-      <input class="btn-dark btn-large col-4" type="button" value="Shuffle Deck" (click)="shuffleDeck()">
-      <input type="text" placeholder="Number of Cards..." [(ngModel)]="requestedAmountOfCards" name="textLine" id="amout-field">
-      <input type="button" class="btn-dark" value="Draw {{requestedAmountOfCards != '' ? requestedAmountOfCards + ' ' : ''}}cards" (click)="drawCards()">
-    </form>
+  </section>
 
-    <ul class="list-inline">
-      <li *ngFor="let card of myPile; index as cardIndex" class="list-inline-item">
+  <form class="form-group row justify-content-center">
+    <small class="col-12 mb-2 text-light text-center">Cards Remaining: {{cardsRemaining}}</small>
+    <input class="btn btn-dark btn-lg col-10 col-sm-5 mt-2" type="button" value="Clear Hand" (click)="clearHand()">
+    <input class="btn btn-dark btn-lg col-10 col-sm-5 mt-2" type="button" value="Reveal All" (click)="revealAll()">
+    <select class="form-control form-control-lg col-10 col-sm-5 mt-2" [(ngModel)]="selectedAmount" name="amountSelector">
+      <option *ngFor="let value of amountOptions" value="{{value}}">{{value}}</option>
+    </select>
+    <input type="button" class="btn btn-dark btn-lg col-10 col-sm-5 mt-2" value="Draw {{selectedAmount}} card{{selectedAmount == '1' ? '' : 's'}}"
+      (click)="drawCards()">
+  </form>
+
+  <section class="row justify-content-center">
+    <ul class="list-inline text-center" id="card-hand">
+      <li *ngFor="let card of hand; index as cardIndex" class="list-inline-item pb-3">
         <img class="playing-card" [src]="card.revealed ? card.image : backOfCardImage" (click)="handleCardClick(cardIndex)">
       </li>
     </ul>
+  </section>
 
+  <footer class="card-footer text-center">
     <p class="text-light">Deck-ID: {{deckID}}</p>
-  </div>
+  </footer>
+
 </div>

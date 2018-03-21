@@ -1,28 +1,35 @@
-<header class="bg-dark text-center pt-5 pb-3 text-primary">
-  <h1>CardHub</h1>
-  <p>Online Card Dealer</p>
+<header class="pt-5 pb-4" id="main-header">
+  <div class="text-success text-center col-5 pt-2">
+    <h1>CardHub</h1>
+    <p>- Online Card Dealer -</p>
+  </div>
 </header>
 
-<nav class="navbar bg-secondary">
-  <div>
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link text-white" routerLink="">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" routerLink="dealer">Dealer</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" routerLink="about">About</a>
-      </li>
-    </ul>
+<nav class="navbar navbar-dark navbar-expand-sm">
+  <button class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div>
+      <ul class="navbar-nav">
+        <li class="nav-item pr-2 pl-2">
+          <a class="nav-link text-white" routerLink="">Home</a>
+        </li>
+        <li class="nav-item pr-2 pl-2">
+          <a class="nav-link text-white" routerLink="dealer">Dealer</a>
+        </li>
+        <li class="nav-item pr-2 pl-2">
+          <a class="nav-link text-white" routerLink="about">About</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-<div id="main-section" class="bg-dark p-5">
+<div id="main-section" class="p-4">
   <router-outlet></router-outlet>
 </div>
 
-<footer id="main-footer" class="bg-info">
-  <p>Hej</p>
+<footer id="main-footer" class="text-center p-3">
+  <small class="text-light">Contact <a href="#" class="text-success">Dante Lundgren</a></small>
 </footer>
